@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV: Kurser</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Mina Kurser</h1>
+    <nav>
+      <a href="/" class="active">Startsida</a>
+      <a href="/add">Lägg till kurs</a>
+      <a href="/about">Om sidan</a>
+    </nav>
+  </header>
+
+  <main>
+    <% if (courses.length === 0) { %>
+      <p>Inga kurser har lagts till än.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Kurskod</th>
+            <th>Namn</th>
+            <th>Kursplan</th>
+            <th>Progression</th>
+            <th>Åtgärd</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% courses.forEach(course => { %>
+            <tr>
+              <td><%= course.coursecode %></td>
+              <td><%= course.coursename %></td>
+              <td><a href="<%= course.syllabus %>" class="view-link" target="_blank">Visa</a></td>
+              <td><%= course.progression %></td>
+              <td>
+                <a href="/delete/<%= course.courseid %>" class="delete-link" data-delete="/delete/<%= course.courseid %>">
+                  Radera
+                </a>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+  </main>
+
+  <!-- pop up message -->
+  <div id="popupBox" class="popup hidden">
+    <div class="popup-inner">
+      <p>Är du säker på att du vill radera denna kurs?</p>
+      <div class="popup-buttons">
+        <button id="popupYes">Ja</button>
+        <button id="popupNo">Avbryt</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
