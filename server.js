@@ -1,19 +1,19 @@
-// Importerar nödvändiga moduler
-const express = require('express');
-const sqlite3 = require('sqlite3').verbose(); // SQLite med stöd för detaljerad loggning
-const path = require('path');
-const bodyParser = require('body-parser');
+// Importing necessary modules
+const express = require("express");
+const sqlite3 = require("sqlite3").verbose(); // SQLite with detailed logging support
+const path = require("path");
+const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Använder miljövariabel eller standardport 3000
+const PORT = process.env.PORT || 3000; // Uses environment variable or default port 3000
 
-// Anslutning till SQLite-databasen
-const db = new sqlite3.Database('./db/cv.db', (err) => {
+// Connecting to the SQLite database
+const db = new sqlite3.Database("./db/cv.db", (err) => {
   if (err) console.error(err.message);
-  else console.log('Connected to SQLite database.');
+  else console.log("Connected to SQLite database.");
 });
 
-// Skapar tabellen 'courses' om den inte redan finns
+// Creates the 'courses' table if it doesn't already exist
 db.run(`
   CREATE TABLE IF NOT EXISTS courses (
     courseid INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,58 +24,60 @@ db.run(`
   )
 `);
 
-// Konfigurerar middleware
-app.set('view engine', 'ejs'); // Använder EJS som vy-motor
-app.use(express.static(path.join(__dirname, 'public'))); // Servar statiska filer från mappen 'public'
-app.use(bodyParser.urlencoded({ extended: false })); // Läser in formulärdata från POST-anrop
+// Configures middleware
+app.set("view engine", "ejs"); // Uses EJS as view engine
+app.use(express.static(path.join(__dirname, "public"))); // Serves static files from the 'public' folder
+app.use(bodyParser.urlencoded({ extended: false })); // Loads form data from POST call
 
 // ROUTES
 
-// Startsidan – visar alla kurser
-app.get('/', (req, res) => {
+// Home page – shows all courses
+app.get("/", (req, res) => {
   db.all("SELECT * FROM courses", [], (err, rows) => {
     if (err) throw err;
-    res.render('index', { courses: rows }); // Skickar kurslistan till index.ejs
+    res.render("index", { courses: rows }); // Sends the course list to index.ejs
   });
 });
 
-// GET /add – visar formuläret för att lägga till kurs
-app.get('/add', (req, res) => {
-  res.render('add', { error: null }); // Skickar med eventuell feltext (initialt null)
+// GET /add – displays the form for adding a course
+app.get("/add", (req, res) => {
+  res.render("add", { error: null }); // Sends with any error text (initially null)
 });
 
-// POST /add – hanterar formulärdata och lägger till ny kurs
-app.post('/add', (req, res) => {
+// POST /add – handles form data and adds new course
+app.post("/add", (req, res) => {
   const { coursecode, coursename, syllabus, progression } = req.body;
 
-  // Enkel validering – alla fält krävs
+  // Simple validation – all fields are required
   if (!coursecode || !coursename || !syllabus || !progression) {
-    return res.render('add', { error: "All fields are required!" });
+    return res.render("add", { error: "All fields are required!" });
   }
 
-  // Lägger till kurs i databasen
+  // Adds course to database
   db.run(
     `INSERT INTO courses (coursecode, coursename, syllabus, progression) VALUES (?, ?, ?, ?)`,
     [coursecode, coursename, syllabus, progression],
     (err) => {
       if (err) throw err;
-      res.redirect('/'); // Skickar användaren tillbaka till startsidan
+      res.redirect("/"); // Sends the user back to the home page
     }
   );
 });
 
-// GET /delete/:id – tar bort kurs med visst ID
-app.get('/delete/:id', (req, res) => {
+// GET /delete/:id – deletes course with certain ID
+app.get("/delete/:id", (req, res) => {
   db.run(`DELETE FROM courses WHERE courseid = ?`, [req.params.id], (err) => {
     if (err) throw err;
-    res.redirect('/'); // Efter radering – tillbaka till startsidan
+    res.redirect("/");
   });
 });
 
-// GET /about – visar informationssidan
-app.get('/about', (req, res) => {
-  res.render('about'); // Renderar about.ejs
+// GET /about – shows the information page
+app.get("/about", (req, res) => {
+  res.render("about"); // Renders about.ejs
 });
 
-// Startar servern
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+// Starts the server
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`)
+);
