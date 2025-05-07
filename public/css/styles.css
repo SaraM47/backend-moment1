@@ -1,0 +1,265 @@
+:root {
+    --bg-color: #45483c; /* Background */
+    --accent-color: #91c53d; /* Table header / buttons */
+    --text-light: #fefdfe; /* Text / form */
+    --hover-color: #78a42f; /* Button and row hovers */
+    --link-view: #25864c; /* Show-link */
+    --link-delete: #ab2e2e; /* Delete-link */
+  }
+  
+  body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    background: var(--bg-color);
+    color: var(--text-light);
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: bold;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  nav a:hover {
+    background-color: var(--accent-color);
+    color: #000;
+    text-decoration: none;
+  }
+  
+  nav a.active {
+    background-color: var(--accent-color);
+    color: #000;
+  }
+  
+  main {
+    margin-top: 2rem;
+  }
+  
+  #about-page {
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--text-light);
+    padding: 1.5rem;
+    border-radius: 2rem;
+    color: #000;
+  }
+  
+  label {
+    margin-top: 1rem;
+  }
+  
+  input,
+  select,
+  button {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  input,
+  select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    margin-top: 1rem;
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    max-width: 40%;
+    border-radius: 4rem;
+  }
+  
+  button:hover {
+    background-color: var(--hover-color);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: var(--text-light);
+    color: #000;
+  }
+  
+  th {
+    background-color: var(--accent-color);
+    color: #000;
+  }
+  
+  th,
+  td {
+    padding: 1.5rem;
+    border: 1px solid #ffffff;
+    text-align: left;
+  }
+  
+  tr:hover td {
+    background-color: #c9f77e;
+  }
+  
+  a.view-link {
+    color: var(--link-view);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a.view-link:hover {
+    text-decoration: underline;
+  }
+  
+  a.delete-link {
+    color: var(--link-delete);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  a.delete-link:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  .popup {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .popup-inner {
+    background-color: var(--text-light);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .popup-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .popup-buttons button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  #popupYes {
+    background-color: var(--link-delete);
+    color: white;
+  }
+  
+  #popupYes:hover {
+    background-color: #911c1c;
+  }
+  
+  #popupNo {
+    background-color: gray;
+    color: white;
+  }
+  
+  #popupNo:hover {
+    background-color: #5a5a5a;
+  }
+  
+  /* Hide popup */
+  .hidden {
+    display: none;
+  }
+  
+  
+  
+  @media (max-width: 600px) {
+      body {
+          padding: 0.5rem;
+        }
+      
+        header {
+          font-size: 1rem;
+        }
+      
+        nav a {
+          display: block;
+          margin: 0.5rem 0;
+          padding: 0.6rem;
+          text-align: center;
+        }
+      
+        form {
+          width: 90%;
+          padding: 1rem;
+          border-radius: 1rem;
+        }
+      
+        #about-page {
+          padding: 1rem;
+          max-width: 90%;
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+      
+        h1, h2 {
+          font-size: 1.3rem;
+        }
+      
+        ul {
+          padding-left: 1.2rem;
+        }
+    
+      table,
+      th,
+      td {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+      }
+    
+      .popup-inner {
+        margin: 40% auto;
+        width: 95%;
+      }
+  
+      button {
+          max-width: 100%;
+      }
+    }
