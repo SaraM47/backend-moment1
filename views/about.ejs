@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om sidan</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Om denna sida</h1>
+    <nav>
+      <a href="/">Startsida</a>
+      <a href="/add">Lägg till kurs</a>
+      <a href="/about" class="active">Om sidan</a>
+    </nav>
+  </header>
+
+  <main id="about-page">
+    <h2>Syfte</h2>
+    <p>Denna webbplats är skapad som del av laboration 1 i kursen <strong>Backend-baserad webbutveckling</strong> vid Mittuniversitetet. Målet var att bygga en serverbaserad applikation där användare kan lägga till och hantera kurser i ett CV-system.</p>
+
+    <h2>Använd teknik</h2>
+    <ul>
+      <li><strong>Databastyp:</strong> SQLite</li>
+      <li><strong>Anslutningspaket (npm):</strong> <code>sqlite3</code></li>
+      <li><strong>Databasen skapas via:</strong> SQL-skript <code>create_db.sql</code></li>
+      <li><strong>Körning av skript:</strong> <code>sqlite3 ./db/cv.db &lt; ./db/create_db.sql</code></li>
+    </ul>
+
+    <h2>Funktionalitet</h2>
+    <p>Användaren kan:</p>
+    <ul>
+      <li>Lägga till nya kurser via ett formulär</li>
+      <li>Visa alla sparade kurser i en tabell</li>
+      <li>Ta bort kurser med en bekräftelseruta</li>
+    </ul>
+
+    <h2>Slutsatser</h2>
+    <p>
+      Jag har lärt mig grunderna i Express, routing, formulärhantering och databaskoppling med Node.js.
+      Att skapa databasen via ett separat skript ger struktur och återanvändbarhet.
+      Jag förstår nu även varför SQLite inte är lämpligt för långsiktig publicering på t.ex. Render.io, eftersom databasen kan återställas vid varje omstart.
+      För redovisning är därför en <strong>video-demonstration</strong> ett mer stabilt och hållbart alternativ.
+    </p>
+  </main>
+</body>
+</html>
