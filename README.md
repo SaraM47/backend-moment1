@@ -23,9 +23,8 @@ Formulärdata valideras både på klientsidan och serversidan. Användaren får 
 Webbplatsen är responsiv och fungerar bra både på stor och liten skärm. Designen är enkelt som är anpassad med hjälp av CSS och media queries för att göra formulär, tabeller och navigering användarvänliga. 
 
 ## Databasinstallation
-Eftersom denna applikation använder SQLite, behövs ingen databas-server eller inloggningsuppgifter. All data sparas lokalt i en fil: ./db/cv.db.
+Eftersom denna applikation använder SQLite, behövs ingen databas-server eller inloggningsuppgifter. All data sparas lokalt i en fil: ./db/cv.db. 
+Saker som bör tänka på är att filen create_db.sql innehåller både tabellstruktur och exempelkurser, vilket betyder att mappen db måste finnas innan du kör kommandot – annars uppstår fel. Efter detta är databasen klar att användas av servern (server.js).
 För att skapa och fylla databasen med exempeldata, kör följande kommando i terminalen (från projektets rotmapp):
 ```bash
 sqlite3 ./db/cv.db < ./db/create_db.sql
-
-Saker som bör tänka på är att filen create_db.sql innehåller både tabellstruktur och exempelkurser, vilket betyder att mappen db måste finnas innan du kör kommandot – annars uppstår fel. Efter detta är databasen klar att användas av servern (server.js).
