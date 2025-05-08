@@ -42,6 +42,8 @@
       Att skapa databasen via ett separat skript ger struktur och återanvändbarhet.
       Jag förstår nu även varför SQLite inte är lämpligt för långsiktig publicering på t.ex. Render.io, eftersom databasen kan återställas vid varje omstart.
       För redovisning är därför en <strong>video-demonstration</strong> ett mer stabilt och hållbart alternativ.
+      <br><br>
+      Med val av att använda SQLite som databashanterare, krävd SQLite ingen server, all data sparas i en lokal .db-fil vilket gör installationen enkel. Med denna anledning gick det snabbt att komma igång och lätt att koppla till Node.js med sqlite3-paketet, vilket gjorde kodningen smidig, vilket är perfekt för studiemiljö för att utföra laboration 1. Jag kunde fokusera på att skriva ren SQL och lära mig grunderna i databashantering utan extra konfiguration. Eftersom allt sparas lokalt i ett filsystem kunde jag enkelt lägga till både databasfil och SQL-skript i mitt GitHub-repo.
     </p>
   </main>
 </body>
